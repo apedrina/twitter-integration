@@ -1,22 +1,6 @@
 # Kafka and SpringBoot example #
 
-+ Connect to the [Twitter Streaming API](https://dev.twitter.com/streaming/overview)
-+ Filter messages that track on "java"
-+ Retrieve the incoming messages for 30 seconds or up to 100 messages, whichever comes first
-+ Your application should return the messages grouped by user (users sorted chronologically, ascending)
-+ The messages per user should also be sorted chronologically, ascending
-+ For each message:
-  * The message ID
-  * The creation date of the message as epoch value
-  * The text of the message
-  * The author of the message
-+ For each author:
-  * The user ID
-  * The creation date of the user as epoch value
-  * The name of the user
-  * The screen name of the user
-+ All the above infomation is provided in SDTOUT 
-
++ Connect to the [Twitter Streaming API](https://dev.twitter.com/streaming/overview) using Java, Kafka, ActiveMQ, Postgres and SpringBoot.
 ## Pre-Requirements ##
 
 * Java 15

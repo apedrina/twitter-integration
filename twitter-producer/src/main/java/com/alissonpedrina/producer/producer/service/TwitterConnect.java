@@ -24,9 +24,9 @@ public class TwitterConnect {
 
     public static Twitter twitter;
 
-    private static String CONSUMER_KEY = "RLSrphihyR4G2UxvA0XBkLAdl";
+    private static String CONSUMER_KEY = "<use_here_your_code>";
 
-    private static String CONSUMER_SECRET = "FTz2KcP1y3pcLw0XXMX5Jy3GTobqUweITIFy4QefullmpPnKm4";
+    private static String CONSUMER_SECRET = "<use_here_your_code>";
 
     public static void connect() throws URISyntaxException, TwitterAuthenticationException {
         RequestToken requestToken = null;

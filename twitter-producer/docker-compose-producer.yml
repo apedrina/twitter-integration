@@ -1,0 +1,15 @@
+version: "3.2"
+
+services:
+  twitter-producer:
+    build: ../twitter-producer
+    image: twitter-producer:latest
+    ports:
+      - "8080:8080"
+    container_name: twitter-producer
+    networks:
+      - apedrina-network
+
+networks:
+  apedrina-network:
+    driver: bridge

@@ -1,0 +1,51 @@
+debug: false
+
+server:
+  port: 9002
+
+spring:
+  profiles:
+    active: ^spring-profiles-active^
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:15432/postgres
+    username: postgres
+    password: pedrina
+    hikari:
+      connection-timeout: 5000
+      maximum-pool-size: 10
+      connection-test-query: select 1
+  flyway:
+    baseline-on-migrate: true
+    table: schema_consumer
+    locations:
+      - classpath:/db/migration/objects/postgres
+  jpa:
+    show-sql: false
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        enable_lazy_load_no_trans: false
+  kafka:
+    bootstrap-servers:
+      - localhost:9091
+      - localhost:9092
+      - localhost:9093
+    consumer:
+      group-id: twitter
+      auto-offset-reset: earliest
+      key-serializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-serializer: org.apache.kafka.common.serialization.StringDeserializer
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework: ERROR
+    com.alissonpedrina.consumer.service: INFO

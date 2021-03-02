@@ -1,0 +1,15 @@
+version: "3.2"
+
+services:
+  twitter-consumer:
+    build: ../twitter-consumer
+    image: twitter-consumer:latest
+    ports:
+      - "9002:9002"
+    container_name: twitter-consumer
+    networks:
+      - apedrina-network
+
+networks:
+  apedrina-network:
+    driver: bridge

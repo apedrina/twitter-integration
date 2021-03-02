@@ -1,0 +1,38 @@
+server:
+  port: 8080
+
+twitter:
+  lookup:
+    string: java
+  oauth:
+    consumerKey:
+    consumerSecret:
+
+activemq:
+  broker-protocol: vm
+  broker-hosts: //localhost
+  broker-ports: 61616?broker.persistent=false
+  jmx-ports: 2011
+  jmx-domain: com.alissonpedrina
+  broker-name: twitterBroker
+  sync-topic: CCMInternal
+
+spring:
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
+  kafka:
+    bootstrap-servers:
+      - localhost:9091
+    template:
+      default-topic: twitter
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework: ERROR
+    com.alissonpedrina.producer.service: INFO

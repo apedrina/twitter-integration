@@ -1,0 +1,119 @@
+# Kafka and SpringBoot example #
+
++ Connect to the [Twitter Streaming API](https://dev.twitter.com/streaming/overview)
++ Filter messages that track on "java"
++ Retrieve the incoming messages for 30 seconds or up to 100 messages, whichever comes first
++ Your application should return the messages grouped by user (users sorted chronologically, ascending)
++ The messages per user should also be sorted chronologically, ascending
++ For each message:
+  * The message ID
+  * The creation date of the message as epoch value
+  * The text of the message
+  * The author of the message
++ For each author:
+  * The user ID
+  * The creation date of the user as epoch value
+  * The name of the user
+  * The screen name of the user
++ All the above infomation is provided in SDTOUT 
+
+## Pre-Requirements ##
+
+* Java 15
+* Docker
+* Maven 3.6.3
+
+You need create an App on twitter to use and integrate with twitter's API. See these links:
+
+[Stackoverflow](https://stackoverflow.com/questions/1808855/getting-new-twitter-api-consumer-and-secret-keys)
+
+[Twitter Developer Portal](https://developer.twitter.com/en/portal/projects-and-apps)
+
+When you'd created your twitter App get the either "consumerKey" and "consumerSecret" and fill the "twitter-producer/application.yml"
+file. See the code snippet:
+
+```yml
+twitter:
+  lookup:
+    string: java
+  oauth:
+    consumerKey: <put_here_your_key>
+    consumerSecret: <put_here_your_secret>
+```
+
+## Compile ##
+
+```bash
+cd <project_root>
+mvn clean install
+
+```
+## Run ##
+
+## Infra ##
+
+First we need up the infrastructure containers 
+
+### Kafka ###
+
+```bash
+cd <project_root>/docker
+docker-compose -f docker-compose-kafka.yml up
+
+```
+### Postgres ###
+
+```bash
+cd <project_root>/docker
+docker-compose -f docker-compose-postgres.yml up
+
+```
+### ActiveMQ ###
+
+Build the image:
+
+```bash
+cd <project_root>/docker/active
+docker build .
+
+```
+
+Give a name to new image:
+
+```bash
+docker tag <IMAGE_ID> apedrina/activemq
+
+```
+
+Up the container:
+
+```bash
+cd <project_root>/docker
+docker-compose -f docker-compose-active.yml up
+
+```
+
+## Producer ##
+
+```bash
+cd <project_root>/twitter-producer
+mvn spring-boot:run
+
+```
+After executing the above command go to the authorization url, copy the code
+go back to the console and paste the code.
+
+## Consumer ##
+
+```bash
+cd <project_root>/twitter-consumer
+mvn spring-boot:run
+
+```
+
+# Run with Docker #
+
+Even tough we've either Dockerfile and docker-compose files to both twitter-consumer and twitter-producer 
+(eg. twitter-producer/Dockerfile ) this feature isn't work yet, but I'll continue working with it and on the
+next commits it will be done.
+

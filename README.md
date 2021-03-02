@@ -13,7 +13,7 @@ You need create an App on twitter to use and integrate with twitter's API. See t
 
 [Twitter Developer Portal](https://developer.twitter.com/en/portal/projects-and-apps)
 
-When you'd created your twitter App get the either "consumerKey" and "consumerSecret" and fill the "twitter-producer/application.yml"
+When you've created your twitter App get the either "consumerKey" and "consumerSecret" and fill the "twitter-producer/application.yml"
 file. See the code snippet:
 
 ```yml
@@ -32,7 +32,7 @@ cd <project_root>
 mvn clean install
 
 ```
-## Run ##
+# Run #
 
 ## Infra ##
 

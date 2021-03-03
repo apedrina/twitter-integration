@@ -1,0 +1,6 @@
+version: '3.2'
+services:
+  active:
+    image: apedrina/activemq:latest
+    ports:
+      - "61616:61616"
